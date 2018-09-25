@@ -217,31 +217,25 @@ $ docker ps
 
 
 ### Health Check
-Once your app is running, you can send a health check with *curl* or *Postman* to `http://localhost:8080/health`
+Once your app is running, you can send a health check with *curl* or *Postman* to `http://localhost:8028/perseus/v1/health`
 
 You should see this:
 ```
-$ curl -v http://localhost:8080/health
+$ curl -v http://localhost:8028/perseus/v1/health
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 8080 (#0)
-> GET /health HTTP/1.1
-> Host: localhost:8080
+* Connected to localhost (::1) port 8028 (#0)
+> GET /perseus/v1/health HTTP/1.1
+> Host: localhost:8028
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< X-Powered-By: Express
-< Content-Type: application/json; charset=utf-8
-< Content-Length: 2
-< ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
-< X-Response-Time: 1.402ms
-< Vary: Accept-Encoding
-< Date: Tue, 04 Sep 2018 17:57:04 GMT
-< Connection: keep-alive
+< Content-Length: 4
+< Content-Type: application/json
 <
 * Connection #0 to host localhost left intact
-[]%
+"OK"%
 ```
 
 ### Development with Docker
