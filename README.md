@@ -1,8 +1,35 @@
 # Perseus
 
-Dockerized Bottle app for testing container orchestration
+Dockerized Bottle app for testing container orchestration.
 
-## Docker
+## Building the web
+To build via docker, see instructions below for how to install Docker.
+
+`make compile` *or* `docker-compose build` to build an image.
+
+
+## Running the webapp
+To run the web-app locally, once you have a docker image:
+
+`make up`
+
+If you want logs streamed to stdout:
+* `docker-compose up` (instead of `make up`)
+
+## API (for testing)
+* **GET** `/perseus/v1/heartbeat`
+* **GET** `/perseus/v1/health`
+* **GET** `/perseus/v1/pegasus/<horse_id>`
+* **PUT** `/perseus/v1/monsters/<monster_id>/status/<status_id>`
+* **POST** `/perseus/v1/treasure/<treasure_name>`
+
+
+## Tests
+There are two ways to run the tests:
+* Via Docker: `make test`
+* CLI (in the root dir, via terminal): `python -m pytest tests`
+
+# Docker
 
 ### Steps
 * [Validate and Install Prerequisites](#validate-and-install-prerequisites)
@@ -161,7 +188,6 @@ Once finished, you should see something that looks like this:
 $ docker images
 
 REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE
-cda-data-catalog-service-api_dcs_api            latest              953fb2344d2b        3 days ago          857MB
 custom/postgres_extensions_image                latest              bafb2f0ce9d3        4 days ago          542MB
 postgres                                        9.6                 6eeaec6956fc        4 days ago          229MB
 dev/dcs                                         latest              600aaef026ca        5 days ago          993MB
@@ -176,7 +202,7 @@ mobz/elasticsearch-head                         5                   b19a5c98e43b
 
 ### Run
 
-In the CDA-PEP directory, execute:
+In the Perseus directory, execute:
 ```
 $ make up
 ```
@@ -240,7 +266,7 @@ $ make down
 * *up* -  Start the service.
 * *down* - Stop the service.
 * *compile* - Compile new container images.
-* *tests* - Run the unit tests.
+* *test* - Run the unit tests.
 * *clean_build* - Compile, Start the service.
 * *start* - Start the service.
 * *clean* - Delete old docker containers, volumes, and logs.
@@ -292,5 +318,5 @@ This will only display the first 100 hundred lines. And, depending on how loggin
 ## Running the tests with Docker
 Running the tests with a container running is very easy. Just run the following in a terminal:
 ```
-make tests
+make test
 ```
