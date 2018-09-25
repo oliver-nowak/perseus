@@ -1,0 +1,13 @@
+version: '3'
+services:
+    perseus:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: perseus:dev
+        volumes:
+          - ~/.aws:/root/.aws
+          - ./logs:/var/log
+          - .:/code
+        ports:
+          - 8028:8028
